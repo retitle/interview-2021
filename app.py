@@ -1,0 +1,58 @@
+from flask import Flask
+from flask import request
+
+app = Flask(__name__)
+
+# The route() function of the Flask class is a decorator,
+# which tells the application which URL should call 
+# the associated function.
+@app.route('/')
+# ‘/’ URL is bound with hello_world() function.
+def hello_world():
+    return 'Hello World'
+
+
+# Returning a dict from a route will make Flask automatically
+# convert it into a json
+@app.route('/ping')
+def ping():
+    # request.args is a dictionary containing query parameters
+    # in a GET request
+    query = request.args.get('query', '')
+
+    # Returning an error is as easy as passing the desired http
+    # error code as the second element of the response tuple
+    if not query:
+        return {
+            'error': 'Query is required'
+        }, 400
+
+    return {
+        'pong': True,
+        'query': query
+    }
+
+
+@app.route('/autocomplete')
+def auto_complete_users():
+   """This function takes a needle (string) and searches in the haystack
+   (users table). Returns a dict with the following schema:
+   {
+      "error_message": string or None,
+      "results": []
+   }"""
+   needle = request.args.get('needle', '')
+
+   result = []
+
+   return {
+       'needle': needle,
+       'result': result
+   }
+
+
+# main driver function
+if __name__ == '__main__':
+    # run() method of Flask class runs the application
+    # on the local development server.
+    app.run()
