@@ -1,7 +1,7 @@
 import sqlite3
 
 """
-Users table definition
+Users table definition. It's been preloaded with a few users.
 
 CREATE TABLE "users" (
 	"id"            INTEGER NOT NULL,
