@@ -43,11 +43,11 @@ def auto_complete_users():
    }"""
    needle = request.args.get('needle', '')
 
-   result = []
+   results = []
 
    return {
        'needle': needle,
-       'result': result
+       'results': results
    }
 
 
