@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import request
+from autocomplete import AutocompleteService
 
 app = Flask(__name__)
 
@@ -35,15 +36,14 @@ def ping():
 
 @app.route('/autocomplete')
 def auto_complete_users():
-   """This function takes a needle (string) and searches in the haystack
-   (users table). Returns a dict with the following schema:
-   {
-      "error_message": string or None,
-      "results": []
-   }"""
    needle = request.args.get('needle', '')
 
-   results = []
+   results, err_code, err_message = AutocompleteService().auto_complete_users(needle)
+
+   if err_code is not None:
+       return {
+           'error': err_message
+       }, err_code
 
    return {
        'needle': needle,
