@@ -1,4 +1,4 @@
-### Glide interview exercise 2021
+# Glide interview exercise 2021
 
 ## Back-end
 
@@ -39,3 +39,13 @@ $ curl http://127.0.0.1:5000/autocomplete\?needle="at"
   ]
 }
 ```
+
+## Front-end
+
+How to install and run it:
+```
+$ cd frontend
+$ yarn install
+$ yarn start
+```
+

@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import request
+from flask_cors import CORS
 from autocomplete import AutocompleteService
 
 app = Flask(__name__)
+CORS(app)
 
 
 # The route() function of the Flask class is a decorator,
