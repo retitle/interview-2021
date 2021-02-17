@@ -4,8 +4,9 @@ from autocomplete import AutocompleteService
 
 app = Flask(__name__)
 
+
 # The route() function of the Flask class is a decorator,
-# which tells the application which URL should call 
+# which tells the application which URL should call
 # the associated function.
 @app.route('/')
 # ‘/’ URL is bound with hello_world() function.
@@ -36,19 +37,20 @@ def ping():
 
 @app.route('/autocomplete')
 def auto_complete_users():
-   needle = request.args.get('needle', '')
+    needle = request.args.get('needle', '')
+    results, err_code, err_message = AutocompleteService().auto_complete_users(
+        needle
+    )
 
-   results, err_code, err_message = AutocompleteService().auto_complete_users(needle)
+    if err_code is not None:
+        return {
+            'error': err_message
+        }, err_code
 
-   if err_code is not None:
-       return {
-           'error': err_message
-       }, err_code
-
-   return {
-       'needle': needle,
-       'results': results
-   }
+    return {
+        'needle': needle,
+        'results': results
+    }
 
 
 # main driver function
