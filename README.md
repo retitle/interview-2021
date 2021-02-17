@@ -48,4 +48,8 @@ $ cd frontend
 $ yarn install
 $ yarn start
 ```
-
+Or:
+```
+$ cd frontend
+$ npm install
+$ npm start
