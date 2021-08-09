@@ -20,7 +20,7 @@ export async function autocomplete(needle) {
       params: { needle }
     });
 
-    return res.data.result;
+    return res.data.results;
   } catch (err) {
     if (err.response) {
       throw new Error(err.response.data?.error ?? 'Unknown server error');
